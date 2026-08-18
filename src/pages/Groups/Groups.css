@@ -1,0 +1,51 @@
+.groups-page {
+  padding: 24px 16px 84px;
+}
+
+.groups-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 24px;
+}
+
+.groups-page__title {
+  margin: 0;
+
+  font-size: 26px;
+  line-height: 1.2;
+  font-weight: 700;
+
+  color: #171717;
+}
+
+.groups-page__subtitle {
+  margin: 8px 0 0;
+
+  font-size: 14px;
+
+  color: #6b6b76;
+}
+
+.groups-page__add-button {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #6c45e5;
+  color: #ffffff;
+}
+
+.groups-page__list {
+  display: flex;
+  flex-direction: column;
+}
