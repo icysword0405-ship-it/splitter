@@ -14,6 +14,7 @@ import GroupDetails from './pages/GroupDetails/GroupDetails';
 
 import AddCollection from './pages/AddCollection/AddCollection';
 import AddContribution from './pages/AddContribution/AddContribution';
+import AddExpense from './pages/AddExpense/AddExpense';
 
 import Activity from './pages/Activity/Activity';
 import Settlement from './pages/Settlement/Settlement';
@@ -60,6 +61,16 @@ const App = () => {
           <Route
             path="/groups/:groupId/contribution"
             element={<AddContribution />}
+          />
+
+          <Route
+            path="/groups/:groupId/expense"
+            element={<AddExpense />}
+          />
+
+          <Route
+            path="/activity"
+            element={<Activity />}
           />
 
           {/* Group information */}

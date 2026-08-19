@@ -1,9 +1,5 @@
 import Settlement from "../pages/Settlement/Settlement";
 
-export type GroupType =
-  | 'trip'
-  | 'festival';
-
 export type MemberRole =
   | 'admin'
   | 'member';
@@ -23,7 +19,6 @@ export interface Member {
 export interface Group {
   id: string;
   name: string;
-  type: GroupType;
   members: Member[];
   totalCollection: number;
   totalContribution: number;

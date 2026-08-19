@@ -145,6 +145,7 @@
 .group-details__member {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
 
   padding: 12px;
@@ -152,6 +153,14 @@
   border-radius: 14px;
 
   background: #ffffff;
+}
+
+.group-details__member-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
 }
 
 .group-details__member-avatar {
@@ -171,7 +180,7 @@
   font-weight: 700;
 }
 
-.group-details__member > div:last-child {
+.group-details__member-info {
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -180,6 +189,13 @@
 .group-details__member span {
   color: #6b6b76;
   font-size: 11px;
+}
+
+.group-details__member-total {
+  color: #1f1f24;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .group-details__actions {

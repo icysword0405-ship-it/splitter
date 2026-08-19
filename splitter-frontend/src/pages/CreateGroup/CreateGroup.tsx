@@ -14,9 +14,6 @@ const CreateGroup = () => {
 
   const [name, setName] = useState('');
 
-  const [type, setType] =
-    useState<'trip' | 'festival'>('trip');
-
   const handleSubmit = (
     event: FormEvent<HTMLFormElement>
   ) => {
@@ -24,7 +21,6 @@ const CreateGroup = () => {
 
     console.log({
       name,
-      type,
     });
 
     navigate('/groups');
@@ -63,42 +59,6 @@ const CreateGroup = () => {
             placeholder="e.g. Goa Trip 2026"
             required
           />
-        </div>
-
-        <div className="create-group-form__field">
-          <span className="create-group-form__label">
-            Group Type
-          </span>
-
-          <div className="create-group-types">
-            <label className="create-group-type">
-              <input
-                type="radio"
-                name="groupType"
-                value="trip"
-                checked={type === 'trip'}
-                onChange={() =>
-                  setType('trip')
-                }
-              />
-
-              <span>Trip</span>
-            </label>
-
-            <label className="create-group-type">
-              <input
-                type="radio"
-                name="groupType"
-                value="festival"
-                checked={type === 'festival'}
-                onChange={() =>
-                  setType('festival')
-                }
-              />
-
-              <span>Festival</span>
-            </label>
-          </div>
         </div>
 
         <button

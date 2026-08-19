@@ -9,7 +9,7 @@ import {
   useParams,
 } from 'react-router-dom';
 
-import { groups } from '../../data/mockData';
+import { groups, transactions } from '../../data/mockData';
 
 import './GroupDetails.css';
 
@@ -31,8 +31,7 @@ const GroupDetails = () => {
   }
 
   const fund =
-    group.totalCollection +
-    group.totalContribution -
+    group.totalCollection -
     group.totalExpense;
 
   return (
@@ -50,10 +49,6 @@ const GroupDetails = () => {
           <h1>{group.name}</h1>
 
           <span>
-            {group.type === 'festival'
-              ? 'Festival'
-              : 'Trip'}
-            {' • '}
             {group.members.length} members
           </span>
         </div>
@@ -67,11 +62,7 @@ const GroupDetails = () => {
       </header>
 
       <section className="group-details__balance">
-        <span>
-          {group.type === 'festival'
-            ? 'Mandal Fund'
-            : 'Trip Balance'}
-        </span>
+        <span>Group Balance</span>
 
         <strong>
           ₹{fund.toLocaleString('en-IN')}
@@ -79,18 +70,16 @@ const GroupDetails = () => {
       </section>
 
       <section className="group-details__summary">
-        {group.type === 'festival' && (
-          <div className="group-details__summary-card">
-            <span>Collections</span>
+        <div className="group-details__summary-card">
+          <span>Collections</span>
 
-            <strong>
-              ₹
-              {group.totalCollection.toLocaleString(
-                'en-IN'
-              )}
-            </strong>
-          </div>
-        )}
+          <strong>
+            ₹
+            {group.totalCollection.toLocaleString(
+              'en-IN'
+            )}
+          </strong>
+        </div>
 
         <div className="group-details__summary-card">
           <span>Contributions</span>
@@ -126,44 +115,59 @@ const GroupDetails = () => {
         </div>
 
         <div className="group-details__member-list">
-          {group.members.map((member) => (
-            <button
-              key={member.id}
-              type='button'
-              className="group-details__member"
-              onClick={() => navigate(`/groups/${group.id}/members/${member.id}`)}
-            >
-              <div className="group-details__member-avatar">
-                {member.initials}
-              </div>
+          {group.members.map((member) => {
+            const memberContribution = transactions
+              .filter(
+                (transaction) =>
+                  transaction.groupId === group.id &&
+                  transaction.type === 'contribution' &&
+                  transaction.memberId === member.id,
+              )
+              .reduce((sum, transaction) => sum + transaction.amount, 0);
 
-              <div className='group_details__member-info'>
-                <strong>{member.name}</strong>
+            return (
+              <button
+                key={member.id}
+                type="button"
+                className="group-details__member"
+                onClick={() => navigate(`/groups/${group.id}/members/${member.id}`)}
+              >
+                <div className="group-details__member-main">
+                  <div className="group-details__member-avatar">
+                    {member.initials}
+                  </div>
 
-                <span>
-                  {member.role === 'admin'
-                    ? 'Admin'
-                    : 'Member'}
-                </span>
-              </div>
-            </button>
-          ))}
+                  <div className="group-details__member-info">
+                    <strong>{member.name}</strong>
+
+                    <span>
+                      {member.role === 'admin'
+                        ? 'Admin'
+                        : 'Member'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="group-details__member-total">
+                  ₹{memberContribution.toLocaleString('en-IN')}
+                </div>
+              </button>
+            );
+          })}
         </div>
       </section>
 
       <section className="group-details__actions">
-        {group.type === 'festival' && (
-          <button
-            type="button"
-            onClick={() =>
-              navigate(
-                `/groups/${group.id}/collection`,
-              )
-            }
-          >
-            Add Collection
-          </button>
-        )}
+        <button
+          type="button"
+          onClick={() =>
+            navigate(
+              `/groups/${group.id}/collection`,
+            )
+          }
+        >
+          Add Collection
+        </button>
 
         <button
           type="button"
@@ -174,6 +178,17 @@ const GroupDetails = () => {
           }
         >
           Add Contribution
+        </button>
+
+        <button
+          type="button"
+          onClick={() =>
+            navigate(
+              `/groups/${group.id}/expense`,
+            )
+          }
+        >
+          Add Expense
         </button>
 
         <button

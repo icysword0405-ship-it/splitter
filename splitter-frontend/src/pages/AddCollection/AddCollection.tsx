@@ -25,19 +25,6 @@ const AddCollection = () => {
     );
   }
 
-  // Collection is only applicable to festival groups.
-  if (group.type !== 'festival') {
-    return (
-      <main className="add-collection">
-        <h1>Collection not available</h1>
-        <p>
-          Public collection is only available
-          for festival groups.
-        </p>
-      </main>
-    );
-  }
-
   const handleSubmit = (
     event: FormEvent<HTMLFormElement>,
   ) => {

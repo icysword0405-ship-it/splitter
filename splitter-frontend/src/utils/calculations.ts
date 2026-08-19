@@ -38,7 +38,7 @@ export const calculateFundSummary = (transactions: Transaction[]) => {
     totalCollection,
     totalContribution,
     totalExpense,
-    remainingBalance: totalCollection + totalContribution - totalExpense,
+    remainingBalance: totalCollection - totalExpense,
   };
 };
 

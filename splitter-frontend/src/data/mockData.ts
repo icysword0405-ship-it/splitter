@@ -41,7 +41,6 @@ export const groups: Group[] = [
   {
     id: 'ganesh-2026',
     name: 'Ganesh Festival 2026',
-    type: 'festival',
     members,
     totalCollection: 75000,
     totalContribution: 15000,
@@ -50,7 +49,6 @@ export const groups: Group[] = [
   {
     id: 'goa-2026',
     name: 'Goa Trip 2026',
-    type: 'trip',
     members,
     totalCollection: 0,
     totalContribution: 50000,
