@@ -1,0 +1,36 @@
+.groups-page {
+  padding: 20px 16px 24px;
+}
+
+.groups-page__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.groups-page__header button {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #222;
+}
+
+.groups-page__header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.groups-page__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

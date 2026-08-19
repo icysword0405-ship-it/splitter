@@ -1,0 +1,9 @@
+.main-layout {
+  min-height: 100vh;
+  background: #f7f7fa;
+}
+
+.main-layout__content {
+  width: 100%;
+  padding-bottom: 88px;
+}

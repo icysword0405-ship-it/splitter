@@ -1,0 +1,189 @@
+.member-summary {
+  min-height: 100vh;
+  padding: 20px 16px 100px;
+}
+
+.member-summary__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.member-summary__header button {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.member-summary__header h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.member-summary__profile {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  margin-bottom: 28px;
+}
+
+.member-summary__avatar {
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 12px;
+
+  border-radius: 50%;
+
+  background: #6c45e5;
+  color: #ffffff;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.member-summary__profile h2 {
+  margin: 0 0 4px;
+}
+
+.member-summary__profile span {
+  color: #777;
+  font-size: 13px;
+}
+
+/* Cards Section */
+
+.member-summary__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.member-summary__card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+}
+
+.member-summary__card span {
+  color: #777;
+  font-size: 14px;
+}
+
+.member-summary__card strong {
+  font-size: 17px;
+}
+
+.member-summary__card--total {
+  background: #6c45e5;
+  color: #ffffff;
+}
+
+.member-summary__card--total span {
+  color: #ffffff;
+}
+
+/* Activity History Section */
+
+.member-summary__history h3 {
+  margin: 0 0 14px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.member-summary__empty {
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+  background: #ffffff;
+  border-radius: 14px;
+}
+
+.member-summary__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.member-summary__list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: #ffffff;
+  border-radius: 14px;
+}
+
+.member-summary__list-item div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.member-summary__item-desc {
+  font-size: 15px;
+  font-weight: 500;
+  color: #111;
+}
+
+.member-summary__item-date {
+  font-size: 12px;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.member-summary__list-item strong {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+}
+
+/* Transaction Type Badges */
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.badge--contribution {
+  background-color: #e6f4ea;
+  color: #137333;
+}
+
+.badge--expense {
+  background-color: #fce8e6;
+  color: #c5221f;
+}
