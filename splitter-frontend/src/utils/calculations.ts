@@ -1,4 +1,4 @@
-import type { Group, Member, Transaction, Settlement } from '../types';
+import type { Group, Transaction, Settlement } from '../types';
 
 // Personal money given by a member (used for settlements)
 export const calculateMemberContribution = (
