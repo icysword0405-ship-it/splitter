@@ -1,4 +1,10 @@
+import {
+  useState,
+  type FormEvent,
+} from 'react';
+
 import { ArrowLeft } from 'lucide-react';
+
 import { useNavigate } from 'react-router-dom';
 
 import './CreateGroup.css';
@@ -6,24 +12,42 @@ import './CreateGroup.css';
 const CreateGroup = () => {
   const navigate = useNavigate();
 
+  const [name, setName] = useState('');
+
+  const [type, setType] =
+    useState<'trip' | 'festival'>('trip');
+
+  const handleSubmit = (
+    event: FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+
+    console.log({
+      name,
+      type,
+    });
+
+    navigate('/groups');
+  };
+
   return (
     <main className="create-group-page">
-      <div className="create-group-page__header">
+      <header className="create-group-page__header">
         <button
           type="button"
-          className="create-group-page__back"
           onClick={() => navigate(-1)}
           aria-label="Go back"
         >
           <ArrowLeft size={22} />
         </button>
 
-        <h1 className="create-group-page__title">
-          Create Group
-        </h1>
-      </div>
+        <h1>Create Group</h1>
+      </header>
 
-      <form className="create-group-form">
+      <form
+        className="create-group-form"
+        onSubmit={handleSubmit}
+      >
         <div className="create-group-form__field">
           <label htmlFor="group-name">
             Group Name
@@ -32,14 +56,19 @@ const CreateGroup = () => {
           <input
             id="group-name"
             type="text"
+            value={name}
+            onChange={(event) =>
+              setName(event.target.value)
+            }
             placeholder="e.g. Goa Trip 2026"
+            required
           />
         </div>
 
         <div className="create-group-form__field">
-          <label>
+          <span className="create-group-form__label">
             Group Type
-          </label>
+          </span>
 
           <div className="create-group-types">
             <label className="create-group-type">
@@ -47,7 +76,10 @@ const CreateGroup = () => {
                 type="radio"
                 name="groupType"
                 value="trip"
-                defaultChecked
+                checked={type === 'trip'}
+                onChange={() =>
+                  setType('trip')
+                }
               />
 
               <span>Trip</span>
@@ -58,6 +90,10 @@ const CreateGroup = () => {
                 type="radio"
                 name="groupType"
                 value="festival"
+                checked={type === 'festival'}
+                onChange={() =>
+                  setType('festival')
+                }
               />
 
               <span>Festival</span>

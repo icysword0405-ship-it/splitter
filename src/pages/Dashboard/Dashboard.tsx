@@ -1,37 +1,46 @@
-import ActivityCard from '../../components/ActivityCard/ActivityCard';
-import ActivitySection from '../../components/ActivitySection/ActivitySection';
-import CreateGroupButton from '../../components/CreateGroupButton/CreateGroupButton';
-import GroupCard from '../../components/GroupCard/GroupCard';
-import SectionHeader from '../../components/SectionHeader/SectionHeader';
+import { useNavigate } from 'react-router-dom';
+
 import WelcomeSection from '../../components/WelcomeSection/WelcomeSection';
+import SectionHeader from '../../components/SectionHeader/SectionHeader';
+import GroupCard from '../../components/GroupCard/GroupCard';
+import CreateGroupButton from '../../components/CreateGroupButton/CreateGroupButton';
+import ActivitySection from '../../components/ActivitySection/ActivitySection';
+
+import { groups } from '../../data/mockData';
+
 import './Dashboard.css';
 
 const Dashboard = () => {
-    return (
-        <main className='dashboard'>
-            <WelcomeSection />
-            <SectionHeader />
-            <GroupCard 
-                name="Goa Trip 2026"
-                type="Trip"
-                memberCount={5}
-                balance={2350}
-            />
+  const navigate = useNavigate();
+
+  return (
+    <div className="dashboard">
+      <WelcomeSection />
+
+      <section className="dashboard__groups">
+        <SectionHeader
+          title="Your Groups"
+          action="See all"
+          onAction={() => navigate('/groups')}
+        />
+
+        <div className="dashboard__group-list">
+          {groups.slice(0, 2).map((group) => (
             <GroupCard
-                name="Ganesh Festival"
-                type="Festival"
-                memberCount={10}
-                balance={-500}
+              key={group.id}
+              group={group}
             />
-            <ActivitySection />
-            <ActivityCard 
-                title="Daily Collection"
-                groupName="Ganesh Festival"
-                amount={9750}
-            />
-            <CreateGroupButton />
-        </main>
-    )
-}
+          ))}
+        </div>
+
+        <div className="dashboard__create">
+          <CreateGroupButton />
+        </div>
+      </section>
+
+      <ActivitySection />
+    </div>
+  );
+};
 
 export default Dashboard;

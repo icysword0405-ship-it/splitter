@@ -1,45 +1,35 @@
-import { Plus } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 import GroupCard from '../../components/GroupCard/GroupCard';
+import { groups } from '../../data/mockData';
+
 import './Groups.css';
 
 const Groups = () => {
+  const navigate = useNavigate();
+
   return (
     <main className="groups-page">
-      <div className="groups-page__header">
-        <div>
-          <h1 className="groups-page__title">
-            Your Groups
-          </h1>
-
-          <p className="groups-page__subtitle">
-            Manage your trips and festivals
-          </p>
-        </div>
-
+      <header className="groups-page__header">
         <button
           type="button"
-          className="groups-page__add-button"
-          aria-label="Create group"
+          onClick={() => navigate(-1)}
+          aria-label="Go back"
         >
-          <Plus size={20} />
+          <ArrowLeft size={22} />
         </button>
-      </div>
+
+        <h1>Groups</h1>
+      </header>
 
       <div className="groups-page__list">
-        <GroupCard
-          name="Goa Trip 2026"
-          type="Trip"
-          memberCount={5}
-          balance={2350}
-        />
-
-        <GroupCard
-          name="Ganesh Festival 2026"
-          type="Festival"
-          memberCount={5}
-          balance={-500}
-        />
+        {groups.map((group) => (
+          <GroupCard
+            key={group.id}
+            group={group}
+          />
+        ))}
       </div>
     </main>
   );

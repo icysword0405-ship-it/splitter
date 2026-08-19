@@ -1,0 +1,77 @@
+.profile-page {
+  min-height: 100vh;
+  padding: 24px 16px 100px;
+}
+
+.profile-page > h1 {
+  margin: 0 0 24px;
+  font-size: 24px;
+}
+
+.profile-page__user {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 20px;
+
+  border-radius: 16px;
+
+  background: #ffffff;
+}
+
+.profile-page__avatar {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #6c45e5;
+  color: #ffffff;
+
+  font-weight: 700;
+}
+
+.profile-page__user h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.profile-page__user span {
+  color: #777;
+  font-size: 12px;
+}
+
+.profile-page__menu {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 18px;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+}
+
+.profile-page__menu button {
+  height: 56px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 0 16px;
+
+  border: none;
+  border-bottom: 1px solid #eeeeee;
+
+  background: transparent;
+
+  text-align: left;
+}

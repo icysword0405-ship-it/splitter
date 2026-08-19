@@ -1,3 +1,18 @@
 .dashboard {
-    padding: 24px 16px 84px;
+  width: 100%;
+  padding: 0 16px;
+}
+
+.dashboard__groups {
+  margin-top: 24px;
+}
+
+.dashboard__group-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dashboard__create {
+  margin-top: 14px;
 }

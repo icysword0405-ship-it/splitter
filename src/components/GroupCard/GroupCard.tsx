@@ -1,52 +1,54 @@
-import { ChevronRight, Users } from "lucide-react";
+import { ChevronRight, Users } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
+import type { Group } from '../../types';
+
 import './GroupCard.css';
-import { useNavigate } from "react-router-dom";
 
 interface GroupCardProps {
-    name: string;
-    type: 'Trip' | 'Festival';
-    memberCount: number;
-    balance: number;
+  group: Group;
 }
 
-const GroupCard = ({
-    name, type, memberCount, balance
-}: GroupCardProps) => {
-    const navigate = useNavigate();
-    const isPositive = balance >= 0;
-    return (
-        <button 
-            type="button" 
-            className="group-card"
-            onClick={() => navigate(`/groups/${name}`)}>
-            <div className="group-card__content">
-                <div className="group-card__icon">
-                    <Users size={22} />
-                </div>
+const GroupCard = ({ group }: GroupCardProps) => {
+  const navigate = useNavigate();
 
-                <div className="group-card__details">
-                    <h3 className="group-card__name">
-                        {name}
-                    </h3>
+  const balance =
+    group.totalCollection +
+    group.totalContribution -
+    group.totalExpense;
 
-                    <div className="group-card__meta">
-                        <span>{type}</span>
-                        <span>.</span>
-                        <span>{memberCount} members </span>
-                    </div>
-                </div>
+  return (
+    <button
+      type="button"
+      className="group-card"
+      onClick={() =>
+        navigate(`/groups/${group.id}`)
+      }
+    >
+      <div className="group-card__icon">
+        {group.type === 'festival' ? '🙏' : '✈️'}
+      </div>
 
-                <div className="group-card__right">
-                    <span 
-                        className={`group-card__balance ${isPositive ? 'group-card__balance--positive' : 'group-card__balace--negative'}`}>
-                        {isPositive ? "+" : "-"}₹
-                        {Math.abs(balance).toLocaleString('en-In')}
-                    </span>
-                    <ChevronRight size={20} />
-                </div>
-            </div>
-        </button>
-    )
-}
+      <div className="group-card__content">
+        <div className="group-card__top">
+          <h3>{group.name}</h3>
+
+          <ChevronRight size={18} />
+        </div>
+
+        <div className="group-card__bottom">
+          <span>
+            <Users size={14} />
+            {group.members.length} members
+          </span>
+
+          <strong>
+            ₹{balance.toLocaleString('en-IN')}
+          </strong>
+        </div>
+      </div>
+    </button>
+  );
+};
 
 export default GroupCard;

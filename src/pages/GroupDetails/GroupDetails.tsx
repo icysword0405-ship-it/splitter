@@ -1,11 +1,39 @@
-import { ArrowLeft, MoreVertical, Users } from 'lucide-react';
-import { useNavigate, useParams } from 'react-router-dom';
+import {
+  ArrowLeft,
+  MoreVertical,
+  Users,
+} from 'lucide-react';
+
+import {
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
+
+import { groups } from '../../data/mockData';
 
 import './GroupDetails.css';
 
 const GroupDetails = () => {
   const navigate = useNavigate();
+
   const { groupId } = useParams();
+
+  const group = groups.find(
+    (item) => item.id === groupId
+  );
+
+  if (!group) {
+    return (
+      <main className="group-details">
+        <h1>Group not found</h1>
+      </main>
+    );
+  }
+
+  const fund =
+    group.totalCollection +
+    group.totalContribution -
+    group.totalExpense;
 
   return (
     <main className="group-details">
@@ -14,44 +42,76 @@ const GroupDetails = () => {
           type="button"
           className="group-details__back"
           onClick={() => navigate(-1)}
-          aria-label="Go back"
         >
           <ArrowLeft size={22} />
         </button>
 
         <div className="group-details__heading">
-          <h1>Ganesh Festival 2026</h1>
-          <span>Festival • 5 members</span>
+          <h1>{group.name}</h1>
+
+          <span>
+            {group.type === 'festival'
+              ? 'Festival'
+              : 'Trip'}
+            {' • '}
+            {group.members.length} members
+          </span>
         </div>
 
         <button
           type="button"
           className="group-details__menu"
-          aria-label="More options"
         >
           <MoreVertical size={22} />
         </button>
       </header>
 
       <section className="group-details__balance">
-        <span className="group-details__balance-label">
-          Mandal Fund
+        <span>
+          {group.type === 'festival'
+            ? 'Mandal Fund'
+            : 'Trip Balance'}
         </span>
 
-        <strong className="group-details__balance-amount">
-          ₹45,750
+        <strong>
+          ₹{fund.toLocaleString('en-IN')}
         </strong>
       </section>
 
       <section className="group-details__summary">
+        {group.type === 'festival' && (
+          <div className="group-details__summary-card">
+            <span>Collections</span>
+
+            <strong>
+              ₹
+              {group.totalCollection.toLocaleString(
+                'en-IN'
+              )}
+            </strong>
+          </div>
+        )}
+
         <div className="group-details__summary-card">
-          <span>Collections</span>
-          <strong>₹75,000</strong>
+          <span>Contributions</span>
+
+          <strong>
+            ₹
+            {group.totalContribution.toLocaleString(
+              'en-IN'
+            )}
+          </strong>
         </div>
 
         <div className="group-details__summary-card">
-          <span>Member Contributions</span>
-          <strong>₹15,000</strong>
+          <span>Expenses</span>
+
+          <strong>
+            ₹
+            {group.totalExpense.toLocaleString(
+              'en-IN'
+            )}
+          </strong>
         </div>
       </section>
 
@@ -66,58 +126,76 @@ const GroupDetails = () => {
         </div>
 
         <div className="group-details__member-list">
-          <div className="group-details__member">
-            <div className="group-details__member-avatar">
-              PT
-            </div>
+          {group.members.map((member) => (
+            <button
+              key={member.id}
+              type='button'
+              className="group-details__member"
+              onClick={() => navigate(`/groups/${group.id}/members/${member.id}`)}
+            >
+              <div className="group-details__member-avatar">
+                {member.initials}
+              </div>
 
-            <div>
-              <strong>Prasad</strong>
-              <span>Admin</span>
-            </div>
+              <div className='group_details__member-info'>
+                <strong>{member.name}</strong>
 
-            <strong>₹5,000</strong>
-          </div>
-
-          <div className="group-details__member">
-            <div className="group-details__member-avatar">
-              AM
-            </div>
-
-            <div>
-              <strong>Member 2</strong>
-              <span>Member</span>
-            </div>
-
-            <strong>₹3,000</strong>
-          </div>
-
-          <div className="group-details__member">
-            <div className="group-details__member-avatar">
-              RK
-            </div>
-
-            <div>
-              <strong>Member 3</strong>
-              <span>Member</span>
-            </div>
-
-            <strong>₹2,000</strong>
-          </div>
+                <span>
+                  {member.role === 'admin'
+                    ? 'Admin'
+                    : 'Member'}
+                </span>
+              </div>
+            </button>
+          ))}
         </div>
       </section>
 
       <section className="group-details__actions">
-        <button type="button">
-          Add Collection
-        </button>
+        {group.type === 'festival' && (
+          <button
+            type="button"
+            onClick={() =>
+              navigate(
+                `/groups/${group.id}/collection`,
+              )
+            }
+          >
+            Add Collection
+          </button>
+        )}
 
-        <button type="button">
+        <button
+          type="button"
+          onClick={() =>
+            navigate(
+              `/groups/${group.id}/contribution`,
+            )
+          }
+        >
           Add Contribution
         </button>
 
-        <button type="button">
-          Add Expense
+        <button
+          type="button"
+          onClick={() =>
+            navigate(
+              `/groups/${group.id}/activity`,
+            )
+          }
+        >
+          View Activity
+        </button>
+
+        <button
+          type="button"
+          onClick={() =>
+            navigate(
+              `/groups/${group.id}/settlement`,
+            )
+          }
+        >
+          Settlement
         </button>
       </section>
     </main>
